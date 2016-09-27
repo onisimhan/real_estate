@@ -1,0 +1,84 @@
+{% extends "struct.html" %}
+{% load staticfiles %}
+{% load main_filters %}
+
+{% block page_title %}
+{% endblock page_title %}
+
+{% block meta %}
+{% endblock meta %}
+
+{% block extra_css %}
+{% endblock extra_css %}
+
+{% block body %}
+{% get_base_states as base_states %}
+<div class="st-container" style="overflow: visible;">
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="{% url 'home' %}" target="_blank">SeeThisProperty.com</a>
+          <a href="#sidebar-agent" class="navbar-toggle btn btn-cyan navbar_button" data-toggle="sidebar-menu"><i class="fa fa-envelope fa-fw fa-2x"></i></a>
+          <a href="tel:8885013124" class="navbar-toggle btn btn-cyan navbar_button"><i class="fa fa-phone fa-fw fa-2x"></i></a>
+
+            <!-- <a href="tel:15555555555" style="float:right; padding:15px; font-size:1.33em"><i class="fa fa-phone"></i> (555) 555-5555</a> -->
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="main-nav">
+          <ul class="nav navbar-nav navbar-right ">
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li><a href="{% url 'contact_us' %}">Contact Us</a></li>
+            <li><a href="tel:8885013124"><i class="fa fa-phone"></i> (888) 501-3124</a></li>
+            <li><a href="mailto:contact@seethisproperty.com"><i class="fa fa-envelope"></i> contact@seethisproperty.com</a></li>
+          </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+      </div>
+    </nav>
+      {% block content %}
+      {% endblock content %}
+      <section class="footer-section">
+        <div class="container" style="padding-bottom:30px;">
+          <div class="row">
+            <div class="col-xs-6 col-md-4">
+              <h4>Corporate</h4>
+              <ul class="list-unstyled">
+                <li><a href="{% url 'about' %}">About the company</a></li>
+                <li><a href="{% url 'contact_us' %}">Contact Us</a></li>
+                <li><a href="{% url 'terms' %}">Terms of use</a></li>
+                <li><a href="{% url 'privacy' %}">Privacy</a></li>
+              </ul>
+            </div>
+            <div class="col-xs-6 col-md-4">
+              <h4>Find Properties</h4>
+              <div class="btn-group">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    Select a State
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" style="height:110px; overflow:scroll;">
+                  {% for state in base_states %}
+                    <li><a href="{% url 'city_list' s=state.abbr %}" rel="Properties in {{ state.name }}">{{ state.name }}</a></li>
+                  {% endfor %}
+                </ul>
+              </div>
+            </div>
+            <div class="col-xs-12 col-md-4">
+              <h4>About SeeThisProperty.com</h4>
+                  <p>SeeThisProperty.com connects home buyers with local realtors in order to help buyers get priority access to the best properties in the United States. This site also provides pertinent information about each property to empower consumers to find and purchase the perfect property.</p>
+          </div>
+        </div>
+      </section>
+    <!-- Footer -->
+    <footer class="footer">
+      <strong>SeeThisProperty.com</strong> &copy; Copyright 2016
+    </footer>
+    <!-- // Footer -->
+</div>
+{% endblock body %}
+
+{% block extra_js %}
+{% endblock extra_js %}

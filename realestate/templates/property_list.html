@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% load main_filters %}
+{% block content %}
+  {% comment %}
+    SEARCH SIDEBAR WITH CITIES
+    <aside class="sidebar left sidebar-size-3 sidebar-mini-reveal sidebar-offset-0 sidebar-skin-white sidebar-visible-desktop" id="sidebar-filter">
+      <div data-scrollable>
+        <div class="sidebar-block equal-padding">
+          <div class="form-group input-group">
+            <input type="text" class="form-control" placeholder="Search">
+            <span class="input-group-btn">
+        <button class="btn btn-primary" type="button"><i class="fa fa-search"></i></button>
+      </span>
+          </div>
+        </div>
+        <div class="category">Cities</div>
+        <div class="sidebar-block">
+          <ul class="list-group list-group-menu">
+            <li class="list-group-item"><a href="#"><span class="badge pull-right">120+</span> Miami</a></li>
+            <li class="list-group-item active"><a href="#"><span class="badge pull-right">30+</span> New York</a></li>
+            <li class="list-group-item"><a href="#"><span class="badge pull-right">40+</span> Chicago</a></li>
+          </ul>
+      </div>
+    </aside>
+    style="background-color: #C9302C;
+  {% endcomment %}
+
+<div class="container">
+{% if object_list %}
+    <h1 class="text-h3">Properties For Sale in {{ object_list.0.city }}, {{ object_list.0.state }}</h1>
+    <div class="row">
+      {% for property in object_list %}
+            <div class="col-md-3 col-xs-6">
+              <div class="panel panel-default relative">
+                <div class="ribbon-heading ribbon-primary inline absolute left margin-none">{{ property.price|remove_float }}</div>
+                {% if not property.available %}
+                  <div class="ribbon-heading ribbon-primary inline absolute right margin-none" style="background-color: #C9302C;">SOLD</div>
+                {% endif %}
+                <div class="cover margin-none">
+                  <img src="{{property.get_images.0.url}}" alt="location" class="img-responsive" style="height: 150px; margin:0 auto;"/>
+                </div>
+                <div class="panel-body">
+                  <h5>{{property.address}}</h5>
+                  <ul class="list-group">
+                    <p><i class="fa fa-fw icon icon-bed"></i> Bedrooms: {{property.bedrooms}}</p>
+                    <p><i class="fa fa-fw icon icon-toilet"></i> Bathrooms: {{property.bathrooms_full}}</p>
+                    <p><i class="fa fa-fw fa-home"></i> {{property.square_feet}} square feet</p>
+                  </ul>
+                  <p class="text-center">
+                    <a href="{% url 'property' s=property.state c=property.city|slugify|title a=property.address|slugify|title pk=property.pk %}" class="btn btn-cyan">See This Property</a>
+                  </p>
+                </div>
+              </div>
+            </div>
+        {% if forloop.counter|divisibleby:4%}
+        </div>
+        <div class="row">
+        {% endif %}
+      {% endfor %}
+{% else %}
+  <h1>Sorry! No properties availables in this City</h1>
+{% endif %}
+  </div>
+
+
+<div class="row text-center" style="margin-bottom: 50px;">
+  <div class="content">
+  {% if object_list %}
+    {% if is_paginated %}{% paginator %}{% endif %}
+  {% endif %}
+  </div>
+</div>
+</div>
+ {% endblock content %}

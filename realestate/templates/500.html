@@ -1,0 +1,26 @@
+{% extends "common_base.html" %}
+{% load staticfiles %}
+{% load main_filters %}
+
+{% block page_title %}
+  Not Found
+{% endblock page_title %}
+
+{% block content %}
+
+
+    <div class="bg-white">
+      <div class="container">
+        <div class="page-section">
+          <div class="page-header text-center">
+            <h1>500 Error (Internal Server Error)</h1>
+          </div>
+          <p>See This Property has been notified of this error and is working to resolve it as soon as possible.</p>
+          {% get_404_object request_path%}<br>
+        </div>
+      </div>
+      <!-- // END .container -->
+    </div>
+    <!-- // END .bg-white -->
+
+{% endblock content %}

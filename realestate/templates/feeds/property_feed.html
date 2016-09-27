@@ -1,0 +1,12 @@
+{% autoescape off %}
+{
+  "Property Address": "{{ property_address }}",
+  "Property City": "{{ property_city }}",
+  "Property State": "{{ property_state }}",
+  "Property Zip Code": "{{ property_zip_code }}",
+  "Property Image": "{{ property_image }}",
+  "Property Description": "{{ property_description }}",
+  "Property Features": {{ property_features }},
+  "Date Posted": "{{ create_date|date:"D d M Y" }}"
+}
+{% endautoescape %}

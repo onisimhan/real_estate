@@ -1,0 +1,112 @@
+{% load staticfiles %}
+<html class="st-layout ls-top-navbar ls-bottom-footer show-sidebar sidebar-r1-xs sidebar-r-25pc-lg sidebar-r-30pc" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% block meta %}
+    {% endblock meta %}
+    <title>
+      {% block page_title %}
+      {% endblock page_title %}
+    </title>
+
+    <link href="{% static 'css/vendor/all.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/app/app.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/app/main.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <style>
+    body{
+      background-color: #F5F5F5;
+    }
+    /*==========  Mobile First Method  ==========*/
+
+        /* Custom, iPhone Retina */
+        @media only screen and (min-width : 320px) {
+          .first-container{
+            margin-top: 100px;
+            margin-bottom: 30px;
+          }
+
+        }
+
+        /* Extra Small Devices, Phones */
+        @media only screen and (min-width : 480px) {
+          .first-container{
+            margin-top: 100px;
+            margin-bottom: 30px;
+          }
+        }
+
+        /* Small Devices, Tablets */
+        @media only screen and (min-width : 768px) {
+          .first-container{
+            margin-top: 100px;
+            margin-bottom: 30px;
+          }
+        }
+
+        /* Medium Devices, Desktops */
+        @media only screen and (min-width : 992px) {
+
+        }
+
+        /* Large Devices, Wide Screens */
+        @media only screen and (min-width : 1200px) {
+
+        }
+        .btn-cyan{
+          background-color: #26a69a;
+          color: #ffffff;
+          text-decoration-color: #ffffff;
+          border-color: #26a69a;
+        }
+
+        .btn-cyan:hover, .btn-cyan:focus, .btn-cyan:active, .btn-cyan.active, .open > .dropdown-toggle.btn-cyan {
+            background-color: #22958B;
+            color: #ffffff;
+            text-decoration-color: #ffffff;
+            border-color: #22958B;
+        }
+
+    </style>
+
+    {% block extra_css %}
+    {% endblock extra_css %}
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-78672104-1', 'auto');
+    ga('send', 'pageview');
+
+    </script>
+  </head>
+
+  <body style="overflow-x: hidden;">
+    <!-- Google Tag Manager -->
+    <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-NQ9TGP"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-NQ9TGP');</script>
+    <!-- End Google Tag Manager -->
+    {% block body %}
+    {% endblock body %}
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvYM7t0bEvQIFuBwpbu-hhW8C7-jDOG60&callback=initMap"></script>
+
+    {% block map_js %}
+    {% endblock map_js %}
+    <script src="https://code.jquery.com/jquery.min.js"></script>
+    <script data-cfasync="false" type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="{% static 'js/app/sidebar.min.js' %}"></script>
+    {% block extra_js %}
+    {% endblock extra_js %}
+  </body>
+</html>

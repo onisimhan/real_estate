@@ -1,0 +1,115 @@
+{% load main_filters %}
+{% if 404_type == 'property' %}
+
+<div class="row">
+  <div class="container">
+  <div class="col-md-12">
+    <h3>We weren't able to find any available properties at the address you're searching for.</h3>
+    <h4>You might like these other properties in {{city}}:</h4>
+  </div>
+    <div class="col-md-12">
+        <div class="slick-basic slick-slider" data-items="3" data-items-lg="3" data-items-md="2" data-items-sm="2" data-items-xs="1">
+          {% for property in properties %}
+            <div class="item">
+              <div class="panel panel-default relative">
+                <div class="ribbon-heading text-h5 ribbon-default inline margin-none left absolute">{{ property.price|remove_float }}</div>
+                <div class="cover hover overlay margin-none">
+                  <img src="{{ property.image.all.0.url }}" alt="location" class="img-responsive" style="height:250px; margin:0 auto;" />
+                  <a href="{{ property.get_url }}" class="overlay overlay-full overlay-bg-black overlay-hover">
+                    <span class="v-center">
+                        <span class="btn btn-circle btn-white"><i class="fa fa-eye"></i></span>
+                    </span>
+                  </a>
+                </div>
+                <div class="panel-body">
+                  <h4 class="margin-v-0-5">{{ property.address }}</h4>
+                  <h5> <small>{{ property.city }}, {{ property.state }}</small></h5>
+                  <p><i class="fa fa-fw icon icon-bed"></i> {{ property.bedrooms }} bedrooms</p>
+                  <p><i class="fa fa-fw icon icon-toilet"></i> {{ property.bathrooms_full }} bathrooms</p>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+        </div>
+        <h4><a href="{% url 'property_list' state city %}">See all properties in {{city}}</a></h4>
+
+    </div>
+  </div>
+</div>
+
+{% elif 404_type == 'city' %}
+
+<div class="row">
+  <div class="container">
+  <div class="col-md-12">
+    <h3>We weren't able to find any available properties in the city you're searching for</h3>
+    <h4>You might be interested in these other cities in {{state|lookup_state_name}}:</h4>
+  </div>
+    <div class="col-md-12">
+        <div class="slick-basic slick-slider" data-items="3" data-items-lg="3" data-items-md="2" data-items-sm="2" data-items-xs="1">
+          {% for property in properties %}
+            <div class="item">
+              <div class="panel panel-default relative">
+                <div class="ribbon-heading text-h5 ribbon-default inline margin-none left absolute">{{ property.price|remove_float }}</div>
+                <div class="cover hover overlay margin-none">
+                  <img src="{{ property.image.all.0.url }}" alt="location" class="img-responsive" style="height:250px; margin:0 auto;" />
+                  <a href="{{ property.get_url }}" class="overlay overlay-full overlay-bg-black overlay-hover">
+                    <span class="v-center">
+                        <span class="btn btn-circle btn-white"><i class="fa fa-eye"></i></span>
+                    </span>
+                  </a>
+                </div>
+                <div class="panel-body">
+                  <h4 class="margin-v-0-5">{{ property.address }}</h4>
+                  <h5> <small>{{ property.city }}, {{ property.state }}</small></h5>
+                  <p><i class="fa fa-fw icon icon-bed"></i> {{ property.bedrooms }} bedrooms</p>
+                  <p><i class="fa fa-fw icon icon-toilet"></i> {{ property.bathrooms_full }} bathrooms</p>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+        </div>
+        <h4><a href="{% url 'city_list' state %}">See all properties in {{state|lookup_state_name}}</a></h4>
+
+    </div>
+  </div>
+</div>
+
+{% else %}
+
+<div class="row">
+  <div class="container">
+  <div class="col-md-12">
+    <h3>Sorry but the page you're looking for doesn't exist.</h3>
+    <h4><a href="{% url 'home' %}">Click here to return to the home page</a></h4>
+    <h4>Check out some of our latest properties:</h4>
+  </div>
+    <div class="col-md-12">
+        <div class="slick-basic slick-slider" data-items="3" data-items-lg="3" data-items-md="2" data-items-sm="2" data-items-xs="1">
+          {% for property in properties %}
+            <div class="item">
+              <div class="panel panel-default relative">
+                <div class="ribbon-heading text-h5 ribbon-default inline margin-none left absolute">{{ property.price|remove_float }}</div>
+                <div class="cover hover overlay margin-none">
+                  <img src="{{ property.image.all.0.url }}" alt="location" class="img-responsive" style="height:250px; margin:0 auto;" />
+                  <a href="{{ property.get_url }}" class="overlay overlay-full overlay-bg-black overlay-hover">
+                    <span class="v-center">
+                        <span class="btn btn-circle btn-white"><i class="fa fa-eye"></i></span>
+                    </span>
+                  </a>
+                </div>
+                <div class="panel-body">
+                  <h4 class="margin-v-0-5">{{ property.address }}</h4>
+                  <h5> <small>{{ property.city }}, {{ property.state }}</small></h5>
+                  <p><i class="fa fa-fw icon icon-bed"></i> {{ property.bedrooms }} bedrooms</p>
+                  <p><i class="fa fa-fw icon icon-toilet"></i> {{ property.bathrooms_full }} bathrooms</p>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+  </div>
+</div>
+
+{% endif %}
